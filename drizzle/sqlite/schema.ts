@@ -57,6 +57,9 @@ export const users = sqliteTable(
     // Notification preferences
     prefEmail: integer("pref_email", { mode: "boolean" }).notNull().default(true),
     prefInApp: integer("pref_in_app", { mode: "boolean" }).notNull().default(true),
+    prefSms: integer("pref_sms", { mode: "boolean" }).notNull().default(false),
+    prefWhatsapp: integer("pref_whatsapp", { mode: "boolean" }).notNull().default(false),
+    locale: text("locale").notNull().default("en"),
     prefStatusUpdates: integer("pref_status_updates", { mode: "boolean" })
       .notNull()
       .default(true),

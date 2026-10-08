@@ -14,6 +14,9 @@ type ProfileValues = {
   bio: string;
   prefEmail: boolean;
   prefInApp: boolean;
+  prefSms: boolean;
+  prefWhatsapp: boolean;
+  locale: "en" | "hi" | "mr";
   prefStatusUpdates: boolean;
   prefResolution: boolean;
   prefCommunity: boolean;
@@ -75,10 +78,18 @@ export function ProfileSettingsForm({ initial }: { initial: ProfileValues }) {
         <div className="grid gap-2 sm:grid-cols-2">
           <Preference checked={values.prefInApp} onChange={(v) => update("prefInApp", v)} title="In-app notifications" description="Show updates in your CivicIssue inbox." />
           <Preference checked={values.prefEmail} onChange={(v) => update("prefEmail", v)} title="Email notifications" description="Email is optional and may not be configured in demo mode." />
+          <Preference checked={values.prefSms} onChange={(v) => update("prefSms", v)} title="SMS updates" description="Requires a phone number and an enabled delivery provider." />
+          <Preference checked={values.prefWhatsapp} onChange={(v) => update("prefWhatsapp", v)} title="WhatsApp updates" description="Requires a phone number and an enabled delivery provider." />
           <Preference checked={values.prefStatusUpdates} onChange={(v) => update("prefStatusUpdates", v)} title="Report status changes" description="Review, assignment, progress and closure." />
           <Preference checked={values.prefResolution} onChange={(v) => update("prefResolution", v)} title="Resolution and feedback requests" description="Let us know whether the fix worked." />
           <Preference checked={values.prefCommunity} onChange={(v) => update("prefCommunity", v)} title="Community activity" description="Updates on issues you follow or support." />
         </div>
+        <label className="mt-4 block text-xs font-semibold text-ink">Language preference
+          <select value={values.locale} onChange={(event) => update("locale", event.target.value as ProfileValues["locale"])} className="mt-1.5 block w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm font-normal text-ink sm:max-w-xs">
+            <option value="en">English</option><option value="hi">हिन्दी (Hindi)</option><option value="mr">मराठी (Marathi)</option>
+          </select>
+          <span className="mt-1 block text-[11px] font-normal text-ink-muted">Used by translated notifications and interface content as translations are enabled.</span>
+        </label>
       </div>
       {error && <p className="mt-4 rounded-lg bg-alert-soft px-3 py-2 text-xs font-medium text-alert" role="alert">{error}</p>}
       <div className="mt-5 flex justify-end"><Button type="submit" loading={saving}><Save className="h-4 w-4" aria-hidden /> Save changes</Button></div>

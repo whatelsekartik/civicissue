@@ -9,6 +9,8 @@ CivicIssue is a civic issue reporting and resolution platform for residents, mun
 - Responsive Next.js App Router application with citizen, authority, worker, and admin experiences.
 - Issue reporting with image uploads, location privacy, category suggestions, duplicate checks, configurable priority scoring, and SLA deadlines.
 - Status history, comments, follows, confirmations, notifications, feedback, abuse reporting, and moderation audit records.
+- Public privacy-safe service-performance and ward/locality workload dashboard at `/sla`.
+- Opt-in email, SMS and WhatsApp delivery preferences; SMS/WhatsApp use Twilio when configured.
 - Department-scoped authority queues and worker assignment checks enforced in server-side actions and route handlers.
 - OpenStreetMap/Leaflet maps, local development storage, and optional AI/email provider abstractions with deterministic AI behavior when no provider is configured.
 - A realistic Pune demo seed set: departments, categories, demo users, and 900 reports across multiple statuses and priorities.
@@ -60,6 +62,7 @@ See [`.env.example`](.env.example) for the full list. Key settings:
 - `AI_PROVIDER`, `AI_API_KEY`, `AI_MODEL`: optional AI integration. With `AI_PROVIDER=none`, deterministic local heuristics keep classification and priority previews available.
 - `STORAGE_PROVIDER`: local storage for development; configure an S3-compatible provider and its credentials for durable deployment storage.
 - `EMAIL_PROVIDER`: optional email notifications. In-app notifications do not depend on email delivery.
+- `PHONE_PROVIDER`: set to `twilio` with the Twilio account values and approved sender(s) to enable opted-in SMS or WhatsApp updates.
 - `NOMINATIM_URL`: optional geocoding endpoint; maps use OpenStreetMap tiles.
 
 Do not commit `.env`, production secrets, database files, or uploaded content.

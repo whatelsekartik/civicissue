@@ -18,7 +18,7 @@ export async function PATCH(req: NextRequest) {
     const patch: Record<string, unknown> = { updatedAt: new Date() };
     for (const key of [
       "name", "phone", "city", "locality", "bio", "profileImage",
-      "prefEmail", "prefInApp", "prefStatusUpdates", "prefResolution", "prefCommunity",
+      "prefEmail", "prefInApp", "prefSms", "prefWhatsapp", "locale", "prefStatusUpdates", "prefResolution", "prefCommunity",
     ] as const) {
       if (body[key] !== undefined) patch[key] = body[key];
     }
